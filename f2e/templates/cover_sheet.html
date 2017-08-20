@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Email-to-Fax Cover Sheet</title>
+  </head>
+  <body>
+    <div class="page">
+      <table>
+        <tbody>
+          <tr>
+            <th>From</th>
+            <td>{{from_}}</td>
+          </tr>
+          <tr>
+            <th>To</th>
+            <td>{{to}}</td>
+          </tr>
+          <tr>
+            <th>Subject</th>
+            <td>{{subject}}</td>
+          </tr>
+        </tbody>
+      </table>
+      {% if text %}
+      <pre>{{text}}</pre>
+      {% endif %}
+    </div>
+  </body>
+</html>
