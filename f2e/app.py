@@ -46,6 +46,7 @@ def make_app(**extra_config):
         'https://', HTTPAdapter(max_retries=retries))
     app.sendgrid_client = SendGridAPIClient(
         apikey=app.config['SENDGRID_API_KEY'])
+    app.pdf = util.PDFKit(app.config)
 
     logging.info('Mounting twilio directory')
     app.register_blueprint(bp_twilio.mod, url_prefix='/twilio')

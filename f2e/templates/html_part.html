@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Email-to-Fax Cover Sheet</title>
+    <title>HTML Email</title>
   </head>
   <body>
     <div class="page">
@@ -22,7 +22,9 @@
         </tbody>
       </table>
       <hr/>
-      <pre>{{text}}</pre>
+      <div>
+        {{html | safe}}
+      </div>
     </div>
   </body>
 </html>

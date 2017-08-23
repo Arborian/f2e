@@ -1,7 +1,8 @@
 import traceback
+import subprocess
 
-import ipdb
 import six
+import pdfkit
 
 
 TRUTHY = set(['true', 't', 'yes', 'y', 'on', '1'])
@@ -23,6 +24,31 @@ def truthish(value):
 
 def debug_hook(type, value, tb):
     """Launch the ipdb debugger on errors."""
+    import ipdb
     traceback.print_exception(type, value, tb)
     print
     ipdb.pm()
+
+
+class PDFKit(object):
+    OPTIONS = {
+        'page-size': 'Letter',
+        'encoding': 'utf-8',
+        'load-error-handling': 'ignore',
+        'load-media-error-handling': 'ignore',
+        'margin-left': '0',
+        'margin-right': '0',
+        'dpi': '72',
+        'image-dpi': '100'
+    }
+
+    def __init__(self, config):
+        command = subprocess.check_output(['which', config['WKHTMLTOPDF_CMD']]).strip()
+        self.config = pdfkit.configuration(wkhtmltopdf=command)
+
+    def from_string(self, html):
+        return pdfkit.from_string(
+            input=html,
+            output_path=False,
+            options=self.OPTIONS,
+            configuration=self.config)

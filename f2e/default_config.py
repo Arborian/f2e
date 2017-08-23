@@ -5,6 +5,8 @@ LOGCONFIG_REQUESTS_ENABLED = True
 LOGCONFIG_REQUESTS_LEVEL = logging.INFO
 LOGCONFIG_REQUESTS_MSG_FORMAT = '{remote_addr} - - {method} "{base_url}" {status} ({execution_time}ms)'
 
+WKHTMLTOPDF_CMD='wkhtmltopdf'
+
 EVENTLET = True
 SECURE = None
 
