@@ -37,3 +37,4 @@ def ngrokify(app, base_url):
             phone_number=app.config['FAX_NUMBER']):
         num.update(
             voice_url=base_url + url_for('twilio.fax_sent', _external=False))
+

@@ -23,7 +23,8 @@ setup(
     entry_points="""
     [console_scripts]
     f2e = f2e.commands:main
-    safer-wkhtmltopdf = f2e.commands:safer_wkhtmltopdf
+    safer-wkhtmltopdf = f2e.commands:safer.wkhtmltopdf
+    safer-wkhtmltopdf-pack = f2e.commands:safer.wkhtmltopdf_pack
 
     [f2e.commands]
     shell = f2e.commands.shell:Shell
