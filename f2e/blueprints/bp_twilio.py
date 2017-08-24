@@ -70,7 +70,7 @@ def send_fax_as_email(
             <tr><th>From</th><td>{from_}</td></tr>
             <tr><th>To</th><td>{to}</td></tr>
             <tr><th>Status</th><td>{status}</td></tr>
-            <tr><th>Page</th><td>{pages}</td></tr>
+            <tr><th>Pages</th><td>{pages}</td></tr>
             <tr><th>Fax Error Code</th><td>{error_code}</td>
             <tr><th>Fax Error Message</th><td>{error_message}</td>
         </table>

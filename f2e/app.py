@@ -10,7 +10,7 @@ from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
 
-from . import util
+from . import util, pdf
 from .blueprints import bp_twilio, bp_sg
 
 log = logging.getLogger(__name__)
@@ -46,7 +46,7 @@ def make_app(**extra_config):
         'https://', HTTPAdapter(max_retries=retries))
     app.sendgrid_client = SendGridAPIClient(
         apikey=app.config['SENDGRID_API_KEY'])
-    app.pdf = util.PDFKit(app.config)
+    app.pdf = pdf.PDFKit(app.config)
 
     logging.info('Mounting twilio directory')
     app.register_blueprint(bp_twilio.mod, url_prefix='/twilio')
