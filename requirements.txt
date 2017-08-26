@@ -35,4 +35,4 @@ stevedore==1.25.0
 twilio==6.5.2
 urllib3==1.22
 Werkzeug==0.12.2
--e git+https://github.com/johnfraney/wkhtmltopdf-pack.git@a4996edbd9ec1c9dfe316146e7fa17cc8f86a676#egg=wkhtmltopdf_pack
+git+https://github.com/johnfraney/wkhtmltopdf-pack.git@a4996edbd9ec1c9dfe316146e7fa17cc8f86a676#egg=wkhtmltopdf_pack

@@ -11,6 +11,7 @@ from f2e.app import make_app
 
 log = logging.getLogger(__name__)
 
+TEST_FAX_URL = 'https://www.twilio.com/docs/documents/25/justthefaxmaam.pdf'
 
 class Shell(Command):
     """Run an interactive shell."""
@@ -38,3 +39,9 @@ def ngrokify(app, base_url):
         num.update(
             voice_url=base_url + url_for('twilio.fax_sent', _external=False))
 
+
+def send_fax(app, media_url=TEST_FAX_URL):
+    return app.twilio_client.fax.v1.faxes.create(
+        from_=app.config['FAX_NUMBER'],
+        to=app.config['FAX_NUMBER'],
+        media_url=media_url)
