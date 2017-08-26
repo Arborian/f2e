@@ -25,5 +25,6 @@ class Serve(Command):
         host = os.environ.get("HOST", '127.0.0.1')
         app.run(
             host=host, port=port,
+            threaded=not parsed_args.debug_server,
             debug=parsed_args.debug_server,
             use_reloader=parsed_args.debug_server)
