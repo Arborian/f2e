@@ -2,7 +2,7 @@ import json
 import uuid
 import logging
 
-from flask import Blueprint, request, url_for
+from flask import Blueprint, request, url_for, abort
 from flask import current_app as app
 
 from f2e import model
@@ -32,6 +32,10 @@ def parse():
     from_ = request.form.get('from')
     to = request.form.get('to')
 
+    dest_number = model.number_from_email(to)
+    if dest_number is None:
+        abort(404)
+
     num_attachments = int(request.form.get('attachments', 0))
     attachments = [
         request.files.get('attachment{}'.format(num))
@@ -48,7 +52,7 @@ def parse():
     log.info('Created data resource at %r', media_url)
     app.twilio_client.fax.v1.faxes.create(
         from_=app.config['FAX_NUMBER'],
-        to=model.number_from_email(to),
+        to=dest_number,
         media_url=media_url)
     return 'OK'
 
@@ -59,4 +63,3 @@ def fax_data(id):
     if data is None:
         log.error("Can't find fax %s, valid ids are %r", id, list(FAX_DATA))
     return data, 200
-

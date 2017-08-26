@@ -9,16 +9,12 @@ re_fax_email_addr = re.compile(r'(?P<addr>.*)(?P<number>\+.*)@.*')
 
 def number_from_email(email):
     m = re_fax_email_addr.search(email)
-    default_number = app.config['FAX_NUMBER']
     if not m:
-        log.error('Invalid email address send fax to %s', default_number)
-        return default_number
+        log.error('Invalid email address, not sending fax')
+        return None
     elif m.group('addr') != app.config['FAX_EMAIL_PREFIX']:
-        log.error(
-            'Invalid email address %r send fax to %s',
-            m.groupdict(),
-            default_number)
-        return default_number
+        log.error('Invalid email address %r, not sending fax')
+        return None
     else:
         return m.group('number')
 
