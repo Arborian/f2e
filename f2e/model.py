@@ -4,7 +4,7 @@ import logging
 from flask import current_app as app
 
 log = logging.getLogger(__name__)
-re_fax_email_addr = re.compile(r'(?P<addr>.*)\+(?P<number>.*)@.*')
+re_fax_email_addr = re.compile(r'(?P<addr>.*)(?P<number>\+.*)@.*')
 
 
 def number_from_email(email):
