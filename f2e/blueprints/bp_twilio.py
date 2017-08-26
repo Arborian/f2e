@@ -58,7 +58,11 @@ def send_fax_as_email(
         error_code, error_message,
         content, content_type):
     message = mail.Mail()
-    message.from_email = mail.Email('fax{}@dev-fax.carefol.io'.format(from_))
+    message.from_email = mail.Email(
+        '{}{}@{}'.format(
+            app.config['FAX_EMAIL_PREFIX'],
+            from_,
+            app.config['INBOUND_EMAIL_DOMAIN']))
     message.subject = 'Incoming fax'
     personalization = mail.Personalization()
     personalization.add_to(mail.Email(model.email_from_number(to)))
